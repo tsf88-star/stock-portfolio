@@ -1,0 +1,27 @@
+{
+  "QLD": 0.0,
+  "SGOV": 117.0,
+  "FDVV": 0,
+  "CASH_USD": 0.0,
+  "SCHD": 0.0,
+  "QQQM": 0.0,
+  "TQQQ": 0.0,
+  "manual_prices": {
+    "SCHD": 0.0,
+    "QQQM": 0.0,
+    "QLD": 0.0,
+    "TQQQ": 0.0,
+    "SGOV": 0.0
+  },
+  "purchase_prices": {
+    "SCHD": 0.0,
+    "QQQM": 0.0,
+    "QLD": 0.0,
+    "TQQQ": 0.0,
+    "SGOV": 100.6251
+  },
+  "last_update_ts": 1777335120.846322,
+  "REALIZED_PROFIT_USD": 685.01,
+  "ACCUMULATED_DIV_USD": 32.59,
+  "last_snapshot_date": "04/28"
+}
