@@ -16,51 +16,61 @@ import numpy as np
 KST = pytz.timezone('Asia/Seoul')
 st.set_page_config(page_title="Master Commander", layout="wide", page_icon="🏹")
 
-# 진짜 앱처럼 보이게 만드는 메타 태그 및 CSS
+# 진짜 앱처럼 보이게 만드는 메타 태그 및 CSS (버그 수정 완료)
 st.markdown("""
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="theme-color" content="#0054FF">
-    </head>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
     
     /* 기본 배경 및 폰트 */
     html, body, [class*="css"] { 
-        font-family: 'Pretendard', sans-serif; 
-        background-color: #F8FAFC; 
+        font-family: 'Pretendard', sans-serif !important; 
+        background-color: #F8FAFC !important; 
     }
     
-    /* 스트림릿 기본 메뉴/푸터 숨기기 (앱처럼 보이기 위해) */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    /* 스트림릿 기본 요소 숨기기 */
+    div[data-testid="stToolbar"], div[data-testid="stDecoration"] { visibility: hidden; height: 0% !important; }
+    footer { visibility: hidden; }
     
     /* 모바일 여백 최적화 */
-    .block-container { padding-top: 1rem !important; padding-bottom: 5rem !important; padding-left: 0.8rem !important; padding-right: 0.8rem !important; }
+    .block-container { 
+        padding-top: 1rem !important; 
+        padding-bottom: 3rem !important; 
+        padding-left: 0.7rem !important; 
+        padding-right: 0.7rem !important; 
+    }
     
-    /* 카드 디자인 */
+    /* 카드 디자인 (반응형) */
     .mpop-card { 
-        background: white; padding: 18px; border-radius: 16px; 
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-        border: 1px solid #E2E8F0; margin-bottom: 12px; 
-        text-align: center; 
+        background: #ffffff; 
+        padding: 16px; 
+        border-radius: 16px; 
+        box-shadow: 0 4px 20px rgba(0, 84, 255, 0.05); 
+        border: 1px solid #EDF2F7; 
+        margin-bottom: 12px;
     }
-    .stock-label { color: #0054FF; font-weight: 700; font-size: 15px; }
-    .plus { color: #EF4444; font-weight: 800; }
-    .minus { color: #3B82F6; font-weight: 800; }
-    .center-val { text-align: center; font-size: 15px; font-weight: 600; margin-top: 5px; }
     
-    /* 탭 스타일 조정 */
-    .stTabs [data-baseweb="tab-list"] { gap: 10px; }
+    /* 종목 레이블 및 수치 */
+    .stock-label { color: #1A202C; font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+    .plus { color: #E53E3E; font-weight: 700; font-size: 15px; }
+    .minus { color: #3182CE; font-weight: 700; font-size: 15px; }
+    .center-val { text-align: center; font-size: 15px; font-weight: 500; color: #4A5568; }
+    
+    /* 탭 스타일 최적화 */
+    .stTabs [data-baseweb="tab-list"] { gap: 8px; border-bottom: none; }
     .stTabs [data-baseweb="tab"] { 
-        height: 45px; background-color: #F1F5F9; 
-        border-radius: 10px 10px 0 0; padding: 0 20px;
+        height: 48px; 
+        background-color: #EDF2F7; 
+        border-radius: 12px; 
+        padding: 0 16px;
+        color: #718096;
+        border: none;
     }
-    .stTabs [aria-selected="true"] { background-color: #0054FF !important; color: white !important; }
+    .stTabs [aria-selected="true"] { 
+        background-color: #0054FF !important; 
+        color: white !important;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(0, 84, 255, 0.2);
+    }
     </style>
     """, unsafe_allow_html=True)
 
