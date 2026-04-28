@@ -11,24 +11,56 @@ import plotly.graph_objects as go
 import numpy as np
 
 # ──────────────────────────────────────────
-# [1] 환경 설정 및 정밀 CSS
+# [1] 환경 설정 및 정밀 CSS (앱 모드 최적화)
 # ──────────────────────────────────────────
 KST = pytz.timezone('Asia/Seoul')
-st.set_page_config(page_title="AI 투자 대시보드 v20.0", layout="wide", page_icon="🏹")
+st.set_page_config(page_title="Master Commander", layout="wide", page_icon="🏹")
 
+# 진짜 앱처럼 보이게 만드는 메타 태그 및 CSS
 st.markdown("""
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="theme-color" content="#0054FF">
+    </head>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
-    html, body, [class*="css"] { font-family: 'Pretendard', sans-serif; background-color: #F8FAFC; }
-    .mpop-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #E2E8F0; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-    .briefing-box { background: #ffffff; padding: 18px; border-radius: 12px; border-left: 6px solid #0054FF; color: #334155; font-size: 15px; line-height: 1.6; box-shadow: 0 2px 8px rgba(0,0,0,0.03); margin-bottom: 20px; }
-    .report-card { background: #F1F5F9; padding: 20px; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 20px; }
-    .table-header { background-color: #F1F5F9; padding: 10px; border-radius: 6px; font-weight: 700; color: #64748B; font-size: 13px; text-align: center; border-bottom: 2px solid #0054FF; }
-    .stock-label { color: #0054FF; font-weight: 700; font-size: 16px; text-align: center; }
-    .plus { color: #EF4444; font-weight: 700; text-align: center; }
-    .minus { color: #3B82F6; font-weight: 700; text-align: center; }
-    .center-val { text-align: center !important; width: 100%; display: block; margin-top: 15px; font-size: 15px; }
-    .stNumberInput div div input { text-align: center !important; font-weight: bold; font-size: 15px !important; }
+    
+    /* 기본 배경 및 폰트 */
+    html, body, [class*="css"] { 
+        font-family: 'Pretendard', sans-serif; 
+        background-color: #F8FAFC; 
+    }
+    
+    /* 스트림릿 기본 메뉴/푸터 숨기기 (앱처럼 보이기 위해) */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    /* 모바일 여백 최적화 */
+    .block-container { padding-top: 1rem !important; padding-bottom: 5rem !important; padding-left: 0.8rem !important; padding-right: 0.8rem !important; }
+    
+    /* 카드 디자인 */
+    .mpop-card { 
+        background: white; padding: 18px; border-radius: 16px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        border: 1px solid #E2E8F0; margin-bottom: 12px; 
+        text-align: center; 
+    }
+    .stock-label { color: #0054FF; font-weight: 700; font-size: 15px; }
+    .plus { color: #EF4444; font-weight: 800; }
+    .minus { color: #3B82F6; font-weight: 800; }
+    .center-val { text-align: center; font-size: 15px; font-weight: 600; margin-top: 5px; }
+    
+    /* 탭 스타일 조정 */
+    .stTabs [data-baseweb="tab-list"] { gap: 10px; }
+    .stTabs [data-baseweb="tab"] { 
+        height: 45px; background-color: #F1F5F9; 
+        border-radius: 10px 10px 0 0; padding: 0 20px;
+    }
+    .stTabs [aria-selected="true"] { background-color: #0054FF !important; color: white !important; }
     </style>
     """, unsafe_allow_html=True)
 
