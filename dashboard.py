@@ -16,21 +16,18 @@ import numpy as np
 KST = pytz.timezone('Asia/Seoul')
 st.set_page_config(page_title="Master Commander", layout="wide", page_icon="🏹")
 
-# 진짜 앱처럼 보이게 만드는 메타 태그 및 CSS (번역 방지 추가)
+# 진짜 앱처럼 보이게 만드는 메타 태그 및 CSS (언어 설정 및 번역 방지 강화)
 st.markdown("""
+    <html lang="ko">
     <head>
         <meta name="google" content="notranslate">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     </head>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
-    
-    /* 전체 번역 방지 클래스 강제 적용 */
-    html, body {
-        -webkit-text-size-adjust: none;
-        touch-action: manipulation;
-    }
+    /* 번역기 작동 시 레이아웃 깨짐 방지 */
+    .notranslate { translate: no !important; }
     </style>
+    </html>
     """, unsafe_allow_html=True)
 
 # ──────────────────────────────────────────
